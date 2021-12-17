@@ -6,7 +6,7 @@ package constants;
  */
 public interface JpaConst {
 
-    //persistence-unit名
+    //p ersistence-unit名
     String PERSISTENCE_UNIT_NAME = "daily_report_system";
 
     //データ取得件数の最大値

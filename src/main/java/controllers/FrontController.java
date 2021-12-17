@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import actions.ActionBase;
+import actions.UnknownAction;
 import constants.ForwardConst;
 
 @WebServlet(name="FrontController", urlPatterns={"/"})
