@@ -17,7 +17,7 @@ public class ServiceBase {
     /**
      * EntityManagerのクローズ
      */
-    public void clse() {
+    public void close() {
         if (em.isOpen()) {
             em.close();
         }
