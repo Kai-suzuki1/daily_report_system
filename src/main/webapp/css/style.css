@@ -151,3 +151,7 @@ tr.row1 {
 tr.row0 {
         background-color: #ffffff;
 }
+
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}

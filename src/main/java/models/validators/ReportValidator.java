@@ -17,7 +17,7 @@ public class ReportValidator {
      * @return エラーのリスト
      */
     public static List<String> validate(ReportView rv) {
-        List<String> errors = new ArrayList<>();
+        List<String> errors = new ArrayList<String>();
 
         //タイトルのチェック
         String titleError = validateTitle(rv.getTitle());
