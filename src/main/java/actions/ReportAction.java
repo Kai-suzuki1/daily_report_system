@@ -12,6 +12,7 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.LikeService;
 import services.ReportService;
 
 
@@ -143,14 +144,24 @@ public class ReportAction extends ActionBase {
      */
     public void show() throws ServletException, IOException {
 
+        LikeService like_service = new LikeService();
+
         //idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+        // 該当日報idの合計いいね！数
+        long lkesCount = like_service.countLike();
+
+        // ログイン中の従業員が該当日報に既にいいね！しているか確認
+        Integer likesCheck = like_service.checkLike();
 
         if (rv == null) {
             //該当の日報データが存在しない場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
         } else {
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
+            putRequestScope(AttributeConst.LIK_COUNT, lkesCount); //合計いいね！数
+            putRequestScope(AttributeConst.LIK_CHECK, likesCheck); //いいね！済かチェック
 
             //詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);
