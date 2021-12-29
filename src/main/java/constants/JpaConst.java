@@ -87,7 +87,7 @@ public interface JpaConst {
     String Q_LIK_COUNT = ".countLikes";
     String Q_LIK_COUNT_DEF = "SELECT COUNT(l) FROM Like AS l where l.report_id = :" + JPQL_PARM_REPORT;
     // 指定した日報idと社員番号を利用し、いいね!済か確認する
-    String Q_LIK_CHECK = ".checklike";
+    String Q_LIK_CHECK = ".checkLike";
     String Q_LIK_CHECK_DEF = "SELECT SUM(case when l.report_id = :" + JPQL_PARM_REPORT + "AND l.employee_id = :" + JPQL_PARM_EMPLOYEE + " then 1 else 0 end) FROM Like AS l";
 
 }

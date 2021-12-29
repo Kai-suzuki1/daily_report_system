@@ -19,7 +19,7 @@ public class LikeConverter {
     public static Like toModel(LikeView lv) {
         return new Like(
                 lv.getId(),
-                EmployeeConverter.toModel(lv.getEmployee()),
+                lv.getEmployeeId(),
                 lv.getReportId());
     }
 
@@ -34,7 +34,7 @@ public class LikeConverter {
         }
         return new LikeView(
                 l.getId(),
-                EmployeeConverter.toView(l.getEmployee()),
+                l.getEmployeeId(),
                 l.getReportId());
     }
 
@@ -59,7 +59,7 @@ public class LikeConverter {
      */
     public static void copyViewToModel(Like l, LikeView lv) {
         l.setId(lv.getId());
-        l.setEmployee(EmployeeConverter.toModel(lv.getEmployee()));
+        l.setEmployeeId(lv.getEmployeeId());
         l.setReportId(lv.getReportId());
     }
 
