@@ -44,7 +44,7 @@ public interface JpaConst {
     String TABLE_LIK = "likes"; // テーブル名
     //日報テーブルカラム
     String LIK_COL_ID = "id"; //　id
-    String LIK_COL_CODE = "code"; //　いいね!した従業員のログインID
+    String LIK_COL_EMP = "employee_id"; //　いいね!した従業員id
     String LIK_COL_REP = "report_id"; //　いいね!された日報のid
 
     //Entity名
@@ -56,7 +56,7 @@ public interface JpaConst {
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
-    String JPQL_PARM_REPORT = "report"; // 日報id
+    String JPQL_PARM_REPORT = "reportId"; // 日報id
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -88,6 +88,6 @@ public interface JpaConst {
     String Q_LIK_COUNT_DEF = "SELECT COUNT(l) FROM Like AS l where l.report_id = :" + JPQL_PARM_REPORT;
     // 指定した日報idと社員番号を利用し、いいね!済か確認する
     String Q_LIK_CHECK = ".checklike";
-    String Q_LIK_CHECK_DEF = "SELECT COUNT(l.report_id = :" + JPQL_PARM_REPORT + " AND l.code = :" + JPQL_PARM_CODE + " OR NULL) FROM Like AS l";
+    String Q_LIK_CHECK_DEF = "SELECT SUM(case when l.report_id = :" + JPQL_PARM_REPORT + "AND l.employee_id = :" + JPQL_PARM_EMPLOYEE + " then 1 else 0 end) FROM Like AS l";
 
 }
