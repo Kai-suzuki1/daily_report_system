@@ -51,7 +51,8 @@ public enum AttributeConst {
     REP_CONTENT("content"),
 
     //いいね！管理
-    LIK_COUNT("likes_count");
+    LIK_COUNT("likes_count"),
+    LIK_CHECK("likes_check");
 
     private final String text;
     private final Integer i;
