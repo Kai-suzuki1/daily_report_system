@@ -4,9 +4,10 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="actLik" value="${ForwardConst.ACT_LIK.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
-<c:set var="commShw" value="${ForwardConst.CMD_SHOW.getValue()}" />
+<c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -46,8 +47,10 @@
            </p>
         </c:if>
 
-        <form method="POST" action="<c:url value='?action=${actRep}&command=${commIdx}' />">
-           <button class="btn_like" type="submit"><span class = "fas fa-heart" >いいね！</span></button>
+        <form method="POST" action="<c:url value='?action=${actLik}&command=${commCrt}' />">
+            <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+            <button class="btn_like" type="submit"><span class = "fas fa-heart" >いいね！</span></button>
         </form>
 
            <p>

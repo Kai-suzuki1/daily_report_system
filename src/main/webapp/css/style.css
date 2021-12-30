@@ -159,3 +159,9 @@ pre {
 h3 {
     font-size: larger;
 }
+
+.btn_like::after{
+    content:'f27a';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+}
