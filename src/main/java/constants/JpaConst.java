@@ -57,6 +57,7 @@ public interface JpaConst {
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
     String JPQL_PARM_REPORT = "reportId"; // 日報id
+    String JPQL_PARM_EMPLOYEEID = "employeeId"; // 従業員id
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -84,10 +85,10 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
     // 指定した日報idの数を数え、いいね!数を取得する
-    String Q_LIK_COUNT = ".countLikes";
-    String Q_LIK_COUNT_DEF = "SELECT COUNT(l) FROM Like AS l where l.report_id = :" + JPQL_PARM_REPORT;
+    String Q_LIK_COUNT = ENTITY_LIK + ".countLikes";
+    String Q_LIK_COUNT_DEF = "SELECT COUNT(l) FROM Like AS l where l.reportId = :" + JPQL_PARM_REPORT;
     // 指定した日報idと社員番号を利用し、いいね!済か確認する
-    String Q_LIK_CHECK = ".checkLike";
-    String Q_LIK_CHECK_DEF = "SELECT SUM(case when l.report_id = :" + JPQL_PARM_REPORT + "AND l.employee_id = :" + JPQL_PARM_EMPLOYEE + " then 1 else 0 end) FROM Like AS l";
+    String Q_LIK_CHECK = ENTITY_LIK + ".checkLike";
+    String Q_LIK_CHECK_DEF = "SELECT SUM(case when l.reportId = :" + JPQL_PARM_REPORT + "AND l.employeeId = :" + JPQL_PARM_EMPLOYEEID + " then 1 else 0 end) FROM Like AS l";
 
 }
