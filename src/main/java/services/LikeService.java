@@ -19,8 +19,10 @@ public class LikeService extends ServiceBase {
      * Likeテーブル内で該当の日報idからいいね！数を算出
      * @return　Long型　日報id情報ベースの合計数
      */
-    public long countLike() {
+    public long countLike(ReportView rv) {
+        Integer reportId = rv.getId();
         long likes_counts = (long)em.createNamedQuery(JpaConst.Q_LIK_COUNT, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_REPORT, reportId)
                 .getSingleResult();
         return likes_counts;
     }
@@ -29,8 +31,13 @@ public class LikeService extends ServiceBase {
      * 該当の日報idと従業員idからいいね！が既にされていないか確認
      * @return Integer型 0＝未いいね！ 1=いいね！済
      */
-    public Integer checkLike() {
-        Integer likes_check = em.createNamedQuery(JpaConst.Q_LIK_CHECK, Integer.class)
+    public long checkLike(ReportView rv, EmployeeView ev) {
+        Integer reportId = rv.getId();
+        Integer employeeId = ev.getId();
+
+        long likes_check = (long)em.createNamedQuery(JpaConst.Q_LIK_CHECK, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_REPORT, reportId)
+                .setParameter(JpaConst.JPQL_PARM_EMPLOYEEID, employeeId)
                 .getSingleResult();
         return likes_check;
     }

@@ -24,10 +24,10 @@ public class LikeAction extends ActionBase {
 
     public void create() throws ServletException, IOException {
 
-//       CSRF対策
+        // CSRF対策
         if (checkToken()) {
 
-//            セッションスコープからログイン中の従業員情報を取得
+            // セッションスコープからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
 
             //idを条件に日報データを取得する
@@ -35,7 +35,7 @@ public class LikeAction extends ActionBase {
 
             service.create(ev, rv);
 
-            forward(ForwardConst.FW_REP_SHOW);
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
 
         }
 
