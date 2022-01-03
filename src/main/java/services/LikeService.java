@@ -49,9 +49,9 @@ public class LikeService extends ServiceBase {
      * @return
      */
     public void create(EmployeeView ev, ReportView rv) {
-        LikeView lvFinish = new LikeView();
-        lvFinish.setEmployeeId(ev.getId());
-        lvFinish.setReportId(rv.getId());
+        LikeView lvFinish = new LikeView(null, ev.getId(), rv.getId());
+//        lvFinish.setEmployeeId(ev.getId());
+//        lvFinish.setReportId(rv.getId());
         createInternal(lvFinish);
 
     }

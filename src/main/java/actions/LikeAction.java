@@ -24,20 +24,21 @@ public class LikeAction extends ActionBase {
 
     public void create() throws ServletException, IOException {
 
-        // CSRF対策
-        if (checkToken()) {
+            // CSRF対策
+//          if (checkToken()) {
 
-            // セッションスコープからログイン中の従業員情報を取得
-            EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+              // セッションスコープからログイン中の従業員情報を取得
+              EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
 
-            //idを条件に日報データを取得する
-            ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+              //idを条件に日報データを取得する
+              ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
-            service.create(ev, rv);
+              service.create(ev, rv);
 
-            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+              redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+
 
         }
 
-    }
+//    }
 }
