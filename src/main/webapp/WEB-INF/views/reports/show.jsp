@@ -64,7 +64,7 @@
                 <span class="fas fa-heart">いいね！</span>
             </button>
         </form>
-
+        <div id="counter"> ${likes_count} いいね！</div>
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
         </p>

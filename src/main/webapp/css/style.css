@@ -161,7 +161,7 @@ h3 {
 }
 
 .btn_like::after{
-    content:'f27a';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 400;
+  content: '\f09a';
+  font-family: 'Font Awesome 5 Brands';
+  font-weight: 900;
 }
