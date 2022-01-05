@@ -144,30 +144,36 @@ public class ReportAction extends ActionBase {
      */
     public void show() throws ServletException, IOException {
 
+        try {
         LikeService like_service = new LikeService();
 
         //idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
         //セッションからログイン中の従業員情報を取得
-//        EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+        EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
 
         // 該当日報idの合計いいね！数
         long lkesCount = like_service.countLike(rv);
 
         // ログイン中の従業員が該当日報に既にいいね！しているか確認
-//        long likesCheck = like_service.checkLike(rv, ev);
 
-        if (rv == null) {
-            //該当の日報データが存在しない場合はエラー画面を表示
-            forward(ForwardConst.FW_ERR_UNKNOWN);
-        } else {
-            putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
-            putRequestScope(AttributeConst.LIK_COUNT, lkesCount); //合計いいね！数
-//            putRequestScope(AttributeConst.LIK_CHECK, likesCheck); //いいね！済かチェック
+            long likesCheck = like_service.checkLike(rv, ev);
 
-            //詳細画面を表示
-            forward(ForwardConst.FW_REP_SHOW);
+            if (rv == null) {
+                //該当の日報データが存在しない場合はエラー画面を表示
+                forward(ForwardConst.FW_ERR_UNKNOWN);
+            } else {
+                putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
+                putRequestScope(AttributeConst.LIK_COUNT, lkesCount); //合計いいね！数
+                putRequestScope(AttributeConst.LIK_CHECK, likesCheck); //いいね！済かチェック
+
+                //詳細画面を表示
+                forward(ForwardConst.FW_REP_SHOW);
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println("引数エラー");
+            e.printStackTrace();
         }
     }
 

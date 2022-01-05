@@ -26,7 +26,7 @@ import lombok.Setter;
             ),
     @NamedQuery(
             name = JpaConst.Q_LIK_CHECK,
-            query = JpaConst.Q_LIK_COUNT_DEF
+            query = JpaConst.Q_LIK_CHECK_DEF
             )
 })
 

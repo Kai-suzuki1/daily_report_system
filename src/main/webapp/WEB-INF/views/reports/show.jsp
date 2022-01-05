@@ -57,14 +57,20 @@
             </p>
         </c:if>
 
-        <form method="POST" action="<c:url value='?action=${actLik}&command=${commCrt}' />">
-            <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
-            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-            <button class="btn_like" type="submit">
-                <span class="fas fa-heart">いいね！</span>
-            </button>
-        </form>
-        <div id="counter"> ${likes_count} いいね！</div>
+        <c:choose>
+            <c:when test="${likes_check >= 1}">
+                <p>いいね済です</p>
+            </c:when>
+            <c:otherwise>
+                <form method="POST" action="<c:url value='?action=${actLik}&command=${commCrt}' />">
+                    <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+                    <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+                    <button class="btn_like" type="submit">
+                        <span class="fas fa-heart"> ${likes_count} いいね！</span>
+                    </button>
+                </form>
+            </c:otherwise>
+        </c:choose>
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
         </p>
