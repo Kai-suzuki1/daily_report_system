@@ -160,3 +160,34 @@ h3 {
     font-size: larger;
 }
 
+button.btn_Nyet {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 0.3em;
+    width: 120px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #cccccc;
+    box-shadow: 0 5px 0 #aaaaaa;
+    transition: 0.3s;
+}
+
+button.btn_Nyet:hover {
+  transform: translateY(3px);
+  text-decoration: none;
+  box-shadow: 0 2px 0 #aaaaaa;
+  cursor: pointer;
+}
+
+button.btn_done {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 0.3em;
+    width: 120px;
+    color: #333;
+    opacity: 0.6;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #cccccc;
+}
