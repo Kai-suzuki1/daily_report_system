@@ -10,12 +10,24 @@
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
-        <c:if test="${flush != null}">
+    <c:choose>
+        <c:when test="${flush != null && report != null}">
+            <div id="flush_success">
+                <c:out value="${report.employee.name} さんの ${report.title} に ${flush}"></c:out>
+            </div>
+        </c:when>
+        <c:when test="${flush != null}">
             <div id="flush_success">
                 <c:out value="${flush}"></c:out>
             </div>
-        </c:if>
-        <h2>日報　一覧</h2>
+        </c:when>
+    </c:choose>
+<!--       <c:if test="${flush != null}">
+            <div id="flush_success">
+                <c:out value="${flush}"></c:out>
+            </div>
+        </c:if>   -->
+        <h2>日報 一覧</h2>
         <table id="report_list">
             <tbody>
                 <tr>

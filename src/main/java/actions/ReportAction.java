@@ -53,10 +53,21 @@ public class ReportAction extends ActionBase {
 
         //セッションにフラッシュメッセージが設定されている場合はリクエストスコープに移し替え、セッションからは削除する
         String flush = getSessionScope(AttributeConst.FLUSH);
-        if (flush != null) {
+        ReportView rv = getSessionScope(AttributeConst.REPORT);
+        if (flush == MessageConst.I_LIKED.getMessage() && rv != null) {
+            putRequestScope(AttributeConst.FLUSH, flush);
+            putRequestScope(AttributeConst.REPORT, rv);
+            removeSessionScope(AttributeConst.FLUSH);
+            removeSessionScope(AttributeConst.REPORT);
+        } else if (flush != null) {
             putRequestScope(AttributeConst.FLUSH, flush);
             removeSessionScope(AttributeConst.FLUSH);
         }
+        
+//        if (flush != null) {
+//            putRequestScope(AttributeConst.FLUSH, flush);
+//            removeSessionScope(AttributeConst.FLUSH);
+//        }
 
         //一覧画面を表示
         forward(ForwardConst.FW_REP_INDEX);

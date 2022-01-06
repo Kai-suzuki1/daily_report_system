@@ -38,6 +38,7 @@ public class LikeAction extends ActionBase {
 
               //セッションにいいね！登録完了のフラッシュメッセージを設定
               putSessionScope(AttributeConst.FLUSH, MessageConst.I_LIKED.getMessage());
+              putSessionScope(AttributeConst.REPORT, rv);
 
               redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
 
