@@ -90,4 +90,10 @@ public class Report {
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
+    /**
+     * 管理者の既読確認
+     */
+    @Column(name = JpaConst.REP_COL_ADMIN_READ, nullable = false)
+    private Integer adminRead;
+
 }

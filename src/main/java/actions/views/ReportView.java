@@ -48,4 +48,9 @@ public class ReportView {
      * 更新日時
      */
     private LocalDateTime updatedAt;
+
+    /**
+     * 管理者の既読確認
+     */
+    private Integer adminRead;
 }

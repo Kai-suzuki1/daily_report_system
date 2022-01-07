@@ -63,11 +63,6 @@ public class ReportAction extends ActionBase {
             putRequestScope(AttributeConst.FLUSH, flush);
             removeSessionScope(AttributeConst.FLUSH);
         }
-        
-//        if (flush != null) {
-//            putRequestScope(AttributeConst.FLUSH, flush);
-//            removeSessionScope(AttributeConst.FLUSH);
-//        }
 
         //一覧画面を表示
         forward(ForwardConst.FW_REP_INDEX);
