@@ -127,6 +127,11 @@ select {
     display: inline-block;
 }
 
+.report_name span {
+    float: right;
+    margin-top: 4px;
+}
+
 #header a {
     color: #eeeeee;
 }
