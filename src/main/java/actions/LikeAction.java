@@ -10,6 +10,7 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.MessageConst;
 import services.LikeService;
+import services.ReportService;
 
 public class LikeAction extends ActionBase {
 
@@ -34,15 +35,37 @@ public class LikeAction extends ActionBase {
               //idを条件に日報データを取得する
               ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
-              service.create(ev, rv);
 
-              //セッションにいいね！登録完了のフラッシュメッセージを設定
-              putSessionScope(AttributeConst.FLUSH, MessageConst.I_LIKED.getMessage());
-              putSessionScope(AttributeConst.REPORT, rv);
+              if (ev.getAdminFlag() == AttributeConst.ROLE_ADMIN.getIntegerValue()) {
 
-              redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+                  // いいね！を登録
+                  service.create(ev, rv);
 
+                  ReportService reService = new ReportService();
+
+                  // admin_readカラムに「１」をセット
+                  rv.setAdminRead(AttributeConst.REP_READ.getIntegerValue());
+                  reService.readReport(rv);
+
+
+                  //セッションにいいね！登録完了のフラッシュメッセージを設定
+                  putSessionScope(AttributeConst.FLUSH, MessageConst.I_LIKED.getMessage());
+                  putSessionScope(AttributeConst.REPORT, rv);
+
+                  redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+
+              } else {
+
+                  // いいね！を登録
+                  service.create(ev, rv);
+
+                  //セッションにいいね！登録完了のフラッシュメッセージを設定
+                  putSessionScope(AttributeConst.FLUSH, MessageConst.I_LIKED.getMessage());
+                  putSessionScope(AttributeConst.REPORT, rv);
+
+                  redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+
+              }
         }
-
-//    }
+//  }
 }

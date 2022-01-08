@@ -50,6 +50,10 @@ public enum AttributeConst {
     REP_TITLE("title"),
     REP_CONTENT("content"),
 
+    //管理者既読確認
+    REP_READ(1),
+    REP_UNREAD(0),
+
     //いいね！管理
     LIK_COUNT("likes_count"),
     LIK_CHECK("likes_check");

@@ -118,6 +118,18 @@ public class ReportService extends ServiceBase {
     }
 
     /**
+     * いいね！したユーザーが管理者だった場合admin_readを更新
+     * @param rv
+     */
+    public void readReport(ReportView rv) {
+        em.getTransaction().begin();
+        Report r = findOneInternal(rv.getId());
+        ReportConverter.copyViewToModel(r, rv);
+        em.getTransaction().commit();
+    }
+
+
+    /**
      * idを条件にデータを1件取得する
      * @param id
      * @return 取得データのインスタンス
