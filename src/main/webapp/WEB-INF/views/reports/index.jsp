@@ -4,6 +4,7 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="actCmt" value="${ForwardConst.ACT_CMT.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
@@ -41,13 +42,29 @@
                             <td class="report_name"><c:out value="${report.employee.name}" /><span class="fas fa-check-circle" style="color:green;"></span></td>
                             <td class="report_date"><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                             <td class="report_title">${report.title}</td>
-                            <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a></td>
+                            <c:choose>
+                                <c:when test="${sessionScope.login_employee.id != report.employee.id}">
+                                    <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
+                                                              <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントする</a></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
+                                </c:otherwise>
+                            </c:choose>
                         </c:when>
                         <c:otherwise>
                             <td class="report_name"><c:out value="${report.employee.name}" /></td>
                             <td class="report_date"><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                             <td class="report_title">${report.title}</td>
-                            <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a></td>
+                            <c:choose>
+                               <c:when test="${sessionScope.login_employee.id != report.employee.id}">
+                                   <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
+                                                             <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントする</a></td>
+                               </c:when>
+                               <c:otherwise>
+                                   <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
+                               </c:otherwise>
+                            </c:choose>
                         </c:otherwise>
                       </c:choose>
                     </tr>

@@ -54,9 +54,16 @@ public enum AttributeConst {
     REP_READ(1),
     REP_UNREAD(0),
 
-    //いいね！管理
+    //いいね！機能
     LIK_COUNT("likes_count"),
-    LIK_CHECK("likes_check");
+    LIK_CHECK("likes_check"),
+
+    //コメント管理
+    COMMENT("comment"),
+    COMMENTS("comments"),
+    CMT_ID("id"),
+    CMT_DATE("comment_date"),
+    CMT_CONTENT("content");
 
     private final String text;
     private final Integer i;

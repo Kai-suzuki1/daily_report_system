@@ -41,17 +41,29 @@ public interface JpaConst {
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
     String REP_COL_ADMIN_READ = "admin_read"; //管理者既読確認
 
-    //日報テーブル名
-    String TABLE_LIK = "likes"; // テーブル名
-    //日報テーブルカラム
+    //いいね！テーブル名
+    String TABLE_LIK = "likes"; //テーブル名
+    //いいね！テーブルカラム
     String LIK_COL_ID = "id"; //　id
-    String LIK_COL_EMP = "employee_id"; //　いいね!した従業員id
-    String LIK_COL_REP = "report_id"; //　いいね!された日報のid
+    String LIK_COL_EMP = "employee_id"; //いいね!した従業員id
+    String LIK_COL_REP = "report_id"; //いいね!された日報のid
+
+    //コメントテーブル
+    String TABLE_CMT = "comments"; //テーブル名
+    //コメントテーブルカラム
+    String CMT_COL_ID = "id"; //id
+    String CMT_COL_EMP = "employee_id"; //コメントを投稿した従業員のid
+    String CMT_COL_REP = "report_id"; //コメントを投稿した日報のid
+    String CMT_COL_CONTENT = "content"; //コメントの内容
+    String CMT_COL_CMT_DATE = "comment_date"; //いつのコメントかを示す日付
+    String CMT_COL_CREATED_AT = "created_at"; //登録日時
+    String CMT_COL_UPDATED_AT = "updated_at"; //更新日時
 
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
     String ENTITY_LIK = "like"; //いいね!
+    String ENTITY_CMT = "comment"; //コメント
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
