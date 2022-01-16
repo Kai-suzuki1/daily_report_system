@@ -5,14 +5,14 @@
 <%@ page import="constants.AttributeConst" %>
 
 
-<c:set var="actCMT" value="${FowardConst.ACT_CMT.getValue()}" />
-<c:set var="cmmCrt" value="${FowardConst.CMD_CREATE.getValue()}" />
+<c:set var="actCMT" value="${ForwardConst.ACT_CMT.getValue()}" />
+<c:set var="cmmCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
 
     <c:param name="content">
         <h2>${report.employee.name} さんの ${report.title} にコメント</h2>
-        <p>内容：</p>
+        <p>日報内容：</p>
         <span>${report.content}</span>
 
         <form method="post" action="<c:url value='?action=${actCMT}&command=${cmmCrt}' />" >
@@ -25,7 +25,7 @@
                </div>
             </c:if>
 
-            <label for="${AttributeConst.CMT_CONTENT.getValue()}">内容：</label>
+            <label for="${AttributeConst.CMT_CONTENT.getValue()}">コメント：</label>
             <textarea name="${AttributeConst.CMT_CONTENT.getValue()}" rows="10" cols="50" autofocus>${comment.content}</textarea>
             <br /><br />
             <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
