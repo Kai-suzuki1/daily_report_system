@@ -38,6 +38,9 @@ public class CommentAction extends ActionBase {
         ReportView rv = rpService.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
         putRequestScope(AttributeConst.REPORT, rv);
 
+        List<CommentView> commentsOnReport = service.getAllCommentsOnReport(rv);
+        putRequestScope(AttributeConst.COMMENTS_ON_REP, commentsOnReport);
+
 //        // 今日の日付だけ入ったコメントインスタンスを送信
 //        CommentView cv = new CommentView();
 //        cv.setCommentDate(LocalDate.now());
@@ -74,7 +77,7 @@ public class CommentAction extends ActionBase {
 
                forward(ForwardConst.FW_CMT_NEW);
         } else {
-                
+
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_COMMENTED.getMessage());
 
                 redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);

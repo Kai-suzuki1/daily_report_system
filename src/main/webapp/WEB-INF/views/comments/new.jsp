@@ -15,6 +15,14 @@
         <p>日報内容：</p>
         <span>${report.content}</span>
 
+        <c:forEach var="commentEach" items="${comments_on_report}">
+        <!-- 一列に並べ替えるために、ulとliを後で使う -->
+            <fmt:parseDate value="${commentEach.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
+            <p><c:out value="${commentEach.employee.name}" /></p>
+            <p><fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+            <p><c:out value="${commentEach.content}" /> </p>
+        </c:forEach>
+
         <form method="post" action="<c:url value='?action=${actCMT}&command=${cmmCrt}' />" >
             <c:if test="${errors != null}">
                 <div id="flush_error">

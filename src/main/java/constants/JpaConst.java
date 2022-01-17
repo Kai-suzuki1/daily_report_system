@@ -103,5 +103,7 @@ public interface JpaConst {
     // 指定した日報idと社員番号を利用し、いいね!済か確認する
     String Q_LIK_CHECK = ENTITY_LIK + ".checkLike";
     String Q_LIK_CHECK_DEF = "SELECT COUNT(l) FROM Like AS l WHERE l.reportId = :" + JPQL_PARM_REPORT + " AND l.employeeId = :" + JPQL_PARM_EMPLOYEEID;
-
+    // 指定した日報idに書かれたコメントを降順で取得する
+    String Q_CMT_GET_ALL_COMMENTS_ON_REP = ENTITY_CMT + ".getAllComments";
+    String Q_CMT_GET_ALL_COMMENTS_ON_REP_DEF = "SELECT c FROM Comment AS c WHERE c.report =:" + JPQL_PARM_REPORT + " ORDER BY c.id DESC";
 }
