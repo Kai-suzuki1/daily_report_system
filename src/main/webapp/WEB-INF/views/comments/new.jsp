@@ -4,8 +4,9 @@
 <%@ page import="constants.ForwardConst" %>
 <%@ page import="constants.AttributeConst" %>
 
-
+<c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actCMT" value="${ForwardConst.ACT_CMT.getValue()}" />
+<c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="cmmCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
@@ -41,6 +42,10 @@
             <button type="submit">投稿</button>
             <button type="reset">リセット</button>
         </form>
+
+       <p>
+            <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
+        </p>
 
     </c:param>
 </c:import>
