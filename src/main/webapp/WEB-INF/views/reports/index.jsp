@@ -49,6 +49,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
+                                    <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントを確認する</a></td>
                                 </c:otherwise>
                             </c:choose>
                         </c:when>
@@ -63,6 +64,7 @@
                                </c:when>
                                <c:otherwise>
                                    <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
+                                   <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントを確認する</a></td>
                                </c:otherwise>
                             </c:choose>
                         </c:otherwise>

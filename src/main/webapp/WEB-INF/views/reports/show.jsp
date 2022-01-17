@@ -7,9 +7,11 @@
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actLik" value="${ForwardConst.ACT_LIK.getValue()}" />
+<c:set var="actCmt" value="${ForwardConst.ACT_CMT.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
+<c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -65,6 +67,7 @@
                   <button type="button" class="btn_done" disabled="disabled">
                       <span class="fas fa-thumbs-up"> ${likes_count} いいね！</span>
                   </button>
+                  <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />" ><span class="fas fa-comment">コメント</span></a>
             </c:when>
             <c:otherwise>
                 <form method="POST" action="<c:url value='?action=${actLik}&command=${commCrt}' />">
@@ -73,6 +76,7 @@
                         <button type="submit" class="btn_Nyet">
                             <span class="far fa-thumbs-up"> ${likes_count} いいね！</span>
                         </button>
+                        <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />" ><span class="fas fa-comment">コメント</span></a>
                 </form>
             </c:otherwise>
         </c:choose>
