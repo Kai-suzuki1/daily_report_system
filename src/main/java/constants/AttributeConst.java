@@ -61,6 +61,8 @@ public enum AttributeConst {
     //コメント管理
     COMMENT("comment"),
     COMMENTS_ON_REP("comments_on_report"),
+    MYCOMMENTS("my_comments"),
+    CMT_COUNTALL("comments_count"),
     CMT_ID("id"),
     CMT_DATE("comment_date"),
     CMT_CONTENT("content");

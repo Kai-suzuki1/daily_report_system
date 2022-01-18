@@ -26,7 +26,13 @@ import lombok.Setter;
 @NamedQueries({
     @NamedQuery(
             name = JpaConst.Q_CMT_GET_ALL_COMMENTS_ON_REP,
-            query = JpaConst.Q_CMT_GET_ALL_COMMENTS_ON_REP_DEF)
+            query = JpaConst.Q_CMT_GET_ALL_COMMENTS_ON_REP_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_CMT_GET_ALL_MYCOMMENTS,
+            query = JpaConst.Q_CMT_GET_ALL_MYCOMMENTS_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_CMT_COUNT_ALL_MYCOMMENTS,
+            query = JpaConst.Q_CMT_COUNT_ALL_MYCOMMENTS_DEF)
 })
 
 

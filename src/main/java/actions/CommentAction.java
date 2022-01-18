@@ -11,6 +11,7 @@ import actions.views.EmployeeView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
+import constants.JpaConst;
 import constants.MessageConst;
 import services.CommentService;
 import services.ReportService;
@@ -31,6 +32,29 @@ public class CommentAction extends ActionBase {
         rpService.close();
     }
 
+    public void index() throws ServletException, IOException {
+
+        int page = getPage();
+        EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+
+        List<CommentView> cvs = service.getMyCommentsPerPage(page, ev);
+
+        long allMyComments = service.countAllMyComments(ev);
+
+        putRequestScope(AttributeConst.CMT_COUNTALL, allMyComments);
+        putRequestScope(AttributeConst.MYCOMMENTS, cvs);
+        putRequestScope(AttributeConst.PAGE, page);
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);
+
+//        String flush = getSessionScope(AttributeConst.FLUSH);
+//        if (flush != null) {
+//            putRequestScope(AttributeConst.FLUSH, flush);
+//            removeSessionScope(AttributeConst.FLUSH);
+//        }
+        
+        forward(ForwardConst.FW_CMT_INDEX);
+    }
+
     public void entryNew() throws ServletException, IOException {
 
         putRequestScope(AttributeConst.TOKEN, getTokenId());
@@ -40,11 +64,6 @@ public class CommentAction extends ActionBase {
 
         List<CommentView> commentsOnReport = service.getAllCommentsOnReport(rv);
         putRequestScope(AttributeConst.COMMENTS_ON_REP, commentsOnReport);
-
-//        // 今日の日付だけ入ったコメントインスタンスを送信
-//        CommentView cv = new CommentView();
-//        cv.setCommentDate(LocalDate.now());
-//        putRequestScope(AttributeConst.COMMENT, cv);
 
         forward(ForwardConst.FW_CMT_NEW);
     }

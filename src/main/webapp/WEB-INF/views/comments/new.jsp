@@ -31,7 +31,7 @@
                         </c:if>
                     </li>
                     <li>
-                        <c:if test="${createDay} != ${updateDay}">
+                        <c:if test="${commentEach.createdAt} != ${commentEach.updatedAt}">
                            <span>編集済み</span>
                         </c:if>
                     </li>

@@ -5,6 +5,8 @@ import java.util.List;
 
 import actions.views.CommentConverter;
 import actions.views.CommentView;
+import actions.views.EmployeeConverter;
+import actions.views.EmployeeView;
 import actions.views.ReportConverter;
 import actions.views.ReportView;
 import constants.JpaConst;
@@ -12,6 +14,24 @@ import models.Comment;
 import models.validators.CommentValidator;
 
 public class CommentService extends ServiceBase {
+
+    //ログイン中の従業員のコメント
+    public List<CommentView> getMyCommentsPerPage(int page, EmployeeView ev) {
+        List<Comment> commentList = em.createNamedQuery(JpaConst.Q_CMT_GET_ALL_MYCOMMENTS, Comment.class)
+                                    .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(ev))
+                                    .setFirstResult(JpaConst.ROW_PER_PAGE * (page -1))
+                                    .setMaxResults(JpaConst.ROW_PER_PAGE)
+                                    .getResultList();
+                            return CommentConverter.toViewList(commentList);
+    }
+
+    public long countAllMyComments(EmployeeView ev) {
+        long allMyComments = (long)em.createNamedQuery(JpaConst.Q_CMT_COUNT_ALL_MYCOMMENTS, Long.class)
+                                    .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(ev))
+                                    .getSingleResult();
+                            return allMyComments;
+
+    }
 
     //　日報idに紐付いたコメントを全県取得
     public List<CommentView> getAllCommentsOnReport(ReportView rv) {

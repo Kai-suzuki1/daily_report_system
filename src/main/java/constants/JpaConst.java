@@ -105,5 +105,11 @@ public interface JpaConst {
     String Q_LIK_CHECK_DEF = "SELECT COUNT(l) FROM Like AS l WHERE l.reportId = :" + JPQL_PARM_REPORT + " AND l.employeeId = :" + JPQL_PARM_EMPLOYEEID;
     // 指定した日報idに書かれたコメントを降順で取得する
     String Q_CMT_GET_ALL_COMMENTS_ON_REP = ENTITY_CMT + ".getAllComments";
-    String Q_CMT_GET_ALL_COMMENTS_ON_REP_DEF = "SELECT c FROM Comment AS c WHERE c.report =:" + JPQL_PARM_REPORT + " ORDER BY c.id ASC";
+    String Q_CMT_GET_ALL_COMMENTS_ON_REP_DEF = "SELECT c FROM Comment AS c WHERE c.report = :" + JPQL_PARM_REPORT + " ORDER BY c.id ASC";
+    //指定した従業員が作成したコメントを全件idの降順で取得する
+    String Q_CMT_GET_ALL_MYCOMMENTS = ENTITY_CMT + ".getAllMycomments";
+    String Q_CMT_GET_ALL_MYCOMMENTS_DEF = "SELECT c FROM Comment AS c WHERE c.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY c.id DESC";
+    //指定した従業員が作成したコメントの件数を取得する
+    String Q_CMT_COUNT_ALL_MYCOMMENTS = ENTITY_CMT + ".countAllMycomments";
+    String Q_CMT_COUNT_ALL_MYCOMMENTS_DEF = "SELECT COUNT(c) FROM Comment AS c WHERE c.employee = :" + JPQL_PARM_EMPLOYEE;
 }
