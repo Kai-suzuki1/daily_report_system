@@ -71,6 +71,7 @@ public interface JpaConst {
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
     String JPQL_PARM_REPORT = "reportId"; // 日報id
     String JPQL_PARM_EMPLOYEEID = "employeeId"; // 従業員id
+    String JPQL_PARM_COMMENTID = "commentId"; // コメントid
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する

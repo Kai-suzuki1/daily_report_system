@@ -93,4 +93,12 @@ public class CommentService extends ServiceBase {
         em.getTransaction().commit();
     }
 
+    public void destory(int id) {
+
+        em.getTransaction().begin();
+        Comment c = findOneInternal(id);
+        em.remove(c);
+        em.getTransaction().commit();
+    }
+
 }

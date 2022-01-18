@@ -11,6 +11,7 @@
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
+<c:set var="commDel" value="${ForwardConst.CMD_DESTROY.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -24,30 +25,46 @@
 
         <h2>コメント一覧</h2>
         <table class="comment_list">
-            <tbody>
-                <tr>
-                    <th>日報作成者</th>
-                    <th>日報タイトル</th>
-                    <th>コメントした日付</th>
-                    <th>コメント内容</th>
-                    <th>操作</th>
-                </tr>
+           <tbody>
+               <tr>
+                   <th>日報作成者</th>
+                   <th>日報タイトル</th>
+                   <th>コメントした日付</th>
+                   <th>コメント内容</th>
+                   <th>操作</th>
+               </tr>
 
-                <c:forEach var="myComment" items="${my_comments}" varStatus="status">
-                    <fmt:parseDate value="${myComment.commentDate }" pattern="yyyy-MM-dd" var="commentDay" type="date" />
+               <c:forEach var="myComment" items="${my_comments}" varStatus="status">
+                   <fmt:parseDate value="${myComment.commentDate }" pattern="yyyy-MM-dd" var="commentDay" type="date" />
 
-                    <tr class="row${status.count % 2}">
-                        <td class="comment_name"><c:out value="${myComment.employee.name}" /></td>
-                        <td class="comment_title"><c:out value="${myComment.report.title}" /></td>
-                        <td class="comment_date"><fmt:formatDate value="${commentDay}" pattern='yyyy-MM-dd' /></td>
-                        <td class="comment_content"><c:out value="${myComment.content}" /></td>
-                        <td>
-                            <a href="<c:url value='?action=${actCmt}&command=${commEdt}&id=${myComment.id}' />">編集</a>
-                            <span>削除</span>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
+                   <tr class="row${status.count % 2}">
+                       <td class="comment_name"><c:out value="${myComment.employee.name}" /></td>
+                       <td class="comment_title"><c:out value="${myComment.report.title}" /></td>
+                       <td class="comment_date"><fmt:formatDate value="${commentDay}" pattern='yyyy-MM-dd' /></td>
+                       <td class="comment_content"><c:out value="${myComment.content}" /></td>
+                       <td>
+                           <a href="<c:url value='?action=${actCmt}&command=${commEdt}&id=${myComment.id}' />">編集</a>
+                           <form method="post" action="<c:url value='?action=${actCmt}&command=${commDel}' />" >
+                                <input type="hidden" name="${AttributeConst.CMT_ID.getValue()}" value="${myComment.id}" />
+                                <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+                                <button type="submit" class="btn_delete">削除</button>
+                           </form>
+<%--                            <a href="#" onclick="confirmDestroy();">削除</a>
+                           <form method="post" action="<c:url value='?action=${actCmt}&command=${commDel}' />" >
+                            <input type="hidden" name="${AttributeConst.CMT_ID.getValue()}" value="${myComment.id}" />
+                            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+                           </form>
+                           <script>
+                          function confirmDestroy() {
+                             if (confirm("本当に削除してよろしいですか？")) {
+                                 document.forms[1].submit();
+                               }
+                              }
+                        </script> --%>
+                       </td>
+                   </tr>
+               </c:forEach>
+           </tbody>
         </table>
 
     </c:param>

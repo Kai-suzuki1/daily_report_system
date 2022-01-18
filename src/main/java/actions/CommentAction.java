@@ -51,7 +51,7 @@ public class CommentAction extends ActionBase {
 //            putRequestScope(AttributeConst.FLUSH, flush);
 //            removeSessionScope(AttributeConst.FLUSH);
 //        }
-        
+
         forward(ForwardConst.FW_CMT_INDEX);
     }
 
@@ -145,4 +145,11 @@ public class CommentAction extends ActionBase {
         }
     }
   }
+    public void destroy() throws ServletException, IOException{
+
+            service.destory(toNumber(getRequestParam(AttributeConst.CMT_ID)));
+
+            redirect(ForwardConst.ACT_CMT, ForwardConst.CMD_INDEX);
+
+    }
 }
