@@ -51,4 +51,26 @@ public class CommentService extends ServiceBase {
         return em.find(Comment.class, id);
     }
 
+    //コメントの編集、更新
+    public List<String> update(CommentView cv) {
+        List<String> errors = CommentValidator.validate(cv);
+
+        if (errors.size() == 0) {
+
+            LocalDateTime ltd = LocalDateTime.now();
+            cv.setUpdatedAt(ltd);
+
+            updateInternal(cv);
+        }
+
+        return errors;
+    }
+
+    protected void updateInternal(CommentView cv) {
+        em.getTransaction().begin();
+        Comment c = findOneInternal(cv.getId());
+        CommentConverter.copyViewtoModel(c, cv);
+        em.getTransaction().commit();
+    }
+
 }

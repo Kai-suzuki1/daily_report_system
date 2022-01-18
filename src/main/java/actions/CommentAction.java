@@ -85,4 +85,45 @@ public class CommentAction extends ActionBase {
 
     }
   }
+    public void edit() throws ServletException, IOException {
+
+        CommentView cmv = service.findOne(toNumber(getRequestParam(AttributeConst.CMT_ID)));
+
+        EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+
+        if (cmv == null || cmv.getEmployee().getId() != ev.getId()) {
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+        } else {
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId());
+            putRequestScope(AttributeConst.COMMENT, cmv);
+
+            forward(ForwardConst.FW_CMT_EDIT);
+        }
+    }
+
+    public void update() throws ServletException, IOException {
+
+        if (checkToken()) {
+
+        CommentView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CMT_ID)));
+
+        cv.setContent(getRequestParam(AttributeConst.CMT_CONTENT));
+
+        List<String> errors = service.update(cv);
+
+        if (errors.size() > 0) {
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId());
+            putRequestScope(AttributeConst.COMMENT, cv);
+            putRequestScope(AttributeConst.ERR, errors);
+
+            forward(ForwardConst.FW_CMT_EDIT);
+        } else {
+
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+    }
+  }
 }
