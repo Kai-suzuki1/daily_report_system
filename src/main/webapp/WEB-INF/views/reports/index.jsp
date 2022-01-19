@@ -75,19 +75,18 @@
         </table>
 
         <div id="pagination">
-            （全 ${reports_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((reports_count - 1) / maxRow) + 1}" step="1">
-                <c:choose>
-                    <c:when test="${i == page}">
-                        <c:out value="${i}" />&nbsp;
-                    </c:when>
-                    <c:otherwise>
-                        <a href="<c:url value='?action=${actRep}&command=${commIdx}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-        </div>
-        <p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">新規日報の登録</a></p>
-
+           （全 ${reports_count} 件）<br />
+           <c:forEach var="i" begin="1" end="${((reports_count - 1) / maxRow) + 1}" step="1">
+               <c:choose>
+                   <c:when test="${i == page}">
+                       <c:out value="${i}" />&nbsp;
+                   </c:when>
+                   <c:otherwise>
+                       <a href="<c:url value='?action=${actRep}&command=${commIdx}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                   </c:otherwise>
+               </c:choose>
+           </c:forEach>
+       </div>
+       <p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">新規日報の登録</a></p>
     </c:param>
 </c:import>

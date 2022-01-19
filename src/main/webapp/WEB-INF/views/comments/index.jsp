@@ -38,11 +38,12 @@
                    <fmt:parseDate value="${myComment.commentDate }" pattern="yyyy-MM-dd" var="commentDay" type="date" />
 
                    <tr class="row${status.count % 2}">
-                       <td class="comment_name"><c:out value="${myComment.employee.name}" /></td>
+                       <td class="comment_name"><c:out value="${myComment.report.employee.name}" /></td>
                        <td class="comment_title"><c:out value="${myComment.report.title}" /></td>
                        <td class="comment_date"><fmt:formatDate value="${commentDay}" pattern='yyyy-MM-dd' /></td>
                        <td class="comment_content"><c:out value="${myComment.content}" /></td>
                        <td>
+                           <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${myComment.report.id}' />">追加コメント</a>
                            <a href="<c:url value='?action=${actCmt}&command=${commEdt}&id=${myComment.id}' />">編集</a>
                            <form method="post" action="<c:url value='?action=${actCmt}&command=${commDel}' />" >
                                 <input type="hidden" name="${AttributeConst.CMT_ID.getValue()}" value="${myComment.id}" />
@@ -67,5 +68,19 @@
            </tbody>
         </table>
 
+        <div id="pagination">
+            （全 ${comments_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((comments_count - 1) / maxRow) + 1}" step="1">
+                <c:choose>
+                    <c:when test="${i == page}">
+                        <c:out value="${i}" />&nbsp;
+                    </c:when>
+                    <c:otherwise>
+                        <a href="<c:url value='?action=${actCmt}&command=${commIdx}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </div>
+        <p><a href="<c:url value='?action=${actRep}&command=${commIdx}' />">他の日報をみる</a></p>
     </c:param>
 </c:import>
