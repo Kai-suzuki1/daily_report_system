@@ -44,12 +44,12 @@
                             <td class="report_title">${report.title}</td>
                             <c:choose>
                                 <c:when test="${sessionScope.login_employee.id != report.employee.id}">
-                                    <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
-                                                              <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントする</a></td>
+                                    <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る<span class="far fa-eye" style="color:#24738e;"></span></a>
+                                                              <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントする<span class="far fa-comment" style="color:#24738e;"></span></a></td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
-                                    <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントを確認する</a></td>
+                                    <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る<span class="far fa-eye" style="color:#24738e;"></span></a>
+                                    <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントを確認する<span class="far fa-comment" style="color:#24738e;"></span></a></td>
                                 </c:otherwise>
                             </c:choose>
                         </c:when>
@@ -59,12 +59,12 @@
                             <td class="report_title">${report.title}</td>
                             <c:choose>
                                <c:when test="${sessionScope.login_employee.id != report.employee.id}">
-                                   <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
-                                                             <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントする</a></td>
+                                   <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る<span class="far fa-eye" style="color:#24738e;"></span></a>
+                                                             <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントする<span class="far fa-comment" style="color:#24738e;"></span></a></td>
                                </c:when>
                                <c:otherwise>
-                                   <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a>
-                                   <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントを確認する</a></td>
+                                   <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る<span class="far fa-eye" style="color:#24738e;"></span></a>
+                                   <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />">コメントを確認する<span class="far fa-comment" style="color:#24738e;"></span></a></td>
                                </c:otherwise>
                             </c:choose>
                         </c:otherwise>

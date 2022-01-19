@@ -42,13 +42,13 @@
                        <td class="comment_title"><c:out value="${myComment.report.title}" /></td>
                        <td class="comment_date"><fmt:formatDate value="${commentDay}" pattern='yyyy-MM-dd' /></td>
                        <td class="comment_content"><c:out value="${myComment.content}" /></td>
-                       <td>
-                           <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${myComment.report.id}' />">追加コメント</a>
-                           <a href="<c:url value='?action=${actCmt}&command=${commEdt}&id=${myComment.id}' />">編集</a>
-                           <form method="post" action="<c:url value='?action=${actCmt}&command=${commDel}' />" >
+                       <td class="comment_action">
+                           <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${myComment.report.id}' />">追加コメント<span class="far fa-eye" style="color:#24738e;"></span></a>
+                           <a href="<c:url value='?action=${actCmt}&command=${commEdt}&id=${myComment.id}' />">編集<span class="far fa-edit" style="color:#24738e;"></span></a>
+                           <form method="post" action="<c:url value='?action=${actCmt}&command=${commDel}' />" class="form_delete" >
                                 <input type="hidden" name="${AttributeConst.CMT_ID.getValue()}" value="${myComment.id}" />
                                 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-                                <button type="submit" class="btn_delete">削除</button>
+                                <button type="submit" class="btn_delete">削除<span class="far fa-trash-alt" style="color:#24738e;"></span></button>
                            </form>
 <%--                            <a href="#" onclick="confirmDestroy();">削除</a>
                            <form method="post" action="<c:url value='?action=${actCmt}&command=${commDel}' />" >

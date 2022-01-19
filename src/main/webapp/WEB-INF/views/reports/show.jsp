@@ -63,19 +63,23 @@
 
         <c:choose>
             <c:when test="${likes_check >= 1 || sessionScope.login_employee.id == report.employee.id}">
+                  <p>
+                      <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />" >コメント<span class="fas fa-comments" style="color:#24738e;"></span></a>
+                  </p>
                   <button type="button" class="btn_done" disabled="disabled">
                       <span class="fas fa-thumbs-up"> ${likes_count} いいね！</span>
                   </button>
-                  <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />" ><span class="fas fa-comment">コメント</span></a>
             </c:when>
             <c:otherwise>
+                <p>
+                    <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />" >コメント<span class="fas fa-comments" style="color:#24738e;"></span></a>
+                </p>
                 <form method="POST" action="<c:url value='?action=${actLik}&command=${commCrt}' />">
                     <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
                     <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
                         <button type="submit" class="btn_Nyet">
                             <span class="far fa-thumbs-up"> ${likes_count} いいね！</span>
                         </button>
-                        <a href="<c:url value='?action=${actCmt}&command=${commNew}&id=${report.id}' />" ><span class="fas fa-comment">コメント</span></a>
                 </form>
             </c:otherwise>
         </c:choose>

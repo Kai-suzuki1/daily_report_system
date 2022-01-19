@@ -40,6 +40,11 @@ p {
 a {
     text-decoration: none;
     color: #24738e;
+    transition: opacity 0.5s;
+}
+
+a:hover{
+    opacity: 0.5;
 }
 
 table, tr, th, td {
@@ -59,6 +64,47 @@ th {
 td {
     width: 66%;
     padding: 10px 2%;
+}
+
+td.comment_action {
+    padding: 10px 1%;
+}
+
+td.report_action a {
+    margin-right: 1em;
+    transition: opacity 0.5s;
+}
+
+td.report_action a:hover {
+    opacity: 0.5;
+}
+
+td.comment_action a {
+    margin-right: 1em;
+    transition: opacity 0.5s;
+}
+
+td.comment_action a:hover {
+    opacity: 0.5;
+}
+
+form.form_delete{
+    display: inline-block;
+}
+
+button.btn_delete {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    color: #24738E;
+    font-size: 16px;
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    transition: all 0.5s;
+}
+
+button.btn_delete:hover {
+    background-color: #f8d7da;
 }
 
 button {
@@ -168,31 +214,33 @@ h3 {
 button.btn_Nyet {
     display: flex;
     justify-content: space-between;
-    padding: 0.5em 0.3em;
+    padding: 0.5em 0.4em;
     width: 120px;
-    color: #333;
+    color: #f4f6f7;
     font-size: 14px;
     font-weight: 700;
-    background-color: #cccccc;
-    box-shadow: 0 5px 0 #aaaaaa;
+    background-color: #3f8299;
+    box-shadow: 0 5px 0 #204b5a;
     transition: 0.3s;
+    border-radius: 100vh;
 }
 
 button.btn_Nyet:hover {
-  transform: translateY(3px);
-  text-decoration: none;
-  box-shadow: 0 2px 0 #aaaaaa;
-  cursor: pointer;
+    transform: translateY(3px);
+    text-decoration: none;
+    box-shadow: 0 2px 0 #204b5a;
+    cursor: pointer;
 }
 
 button.btn_done {
     display: flex;
     justify-content: space-between;
-    padding: 0.5em 0.3em;
+    padding: 0.5em 0.4em;
     width: 120px;
-    color: #333;
+    color: #f4f6f7;
     opacity: 0.6;
     font-size: 14px;
     font-weight: 700;
-    background-color: #cccccc;
+    background-color: #3f8299;
+    border-radius: 100vh;
 }
