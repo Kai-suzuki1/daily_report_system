@@ -24,16 +24,15 @@
                     </c:forEach>
                 </div>
             </c:if>
-            <ul>
-                <li>日付：<br />
+            <ul class="comment_edit_ul">
+               <li><h3>日付：<br /></h3>
                    <fmt:parseDate value="${comment.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
-                   <fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" />
+                   <b><fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></b>
                 </li>
-
-                <li>氏名：<br />
-                   ${comment.employee.name}
+                <li><h3>氏名：<br /></h3>
+                  <b>${comment.employee.name}</b>
                 </li>
-                <li><label for="${AttributeConst.CMT_CONTENT.getValue()}">コメント内容：<br /></label>
+                <li><h3><label for="${AttributeConst.CMT_CONTENT.getValue()}">コメント内容：<br /></label></h3>
                     <textarea name="${AttributeConst.CMT_CONTENT.getValue()}" rows="10" cols="50" autofocus>${comment.content}</textarea>
                     <br /><br />
                 </li>

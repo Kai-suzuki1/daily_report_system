@@ -32,9 +32,34 @@ li {
     margin-bottom: 10px;
 }
 
+.comment_new_ul li{
+    display: inline-block;
+}
+
+.comment_new_ul li:last-child {
+    display: inline;
+}
+
+.comment_new_ul li:not(:last-child){
+    margin-right: 2em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 p {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+p.root_comment {
+    border: 2px solid #817f7f;
+    border-radius: 0.67em;
+    padding: 0.5em;
+    background-color: #fff8f8;
+    width: 70%;
+    height: 150px;
+    font-size: 1em;
+    line-height: 1.2;
 }
 
 a {
@@ -64,6 +89,12 @@ th {
 td {
     width: 66%;
     padding: 10px 2%;
+}
+
+td.comment_content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 td.comment_action {

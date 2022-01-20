@@ -14,28 +14,28 @@
 
     <c:param name="content">
         <h2>${report.employee.name} さんの ${report.title} にコメント</h2>
-        <p>日報内容：</p>
-        <span>${report.content}</span>
+        <h3>日報内容：</h3>
+        <p class="root_comment">${report.content}</p>
 
         <c:forEach var="commentEach" items="${comments_on_report}">
             <fmt:parseDate value="${commentEach.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
             <fmt:parseDate value="${commentEach.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
 
             <div class="comments_detail">
-                <ul>
-                    <li><c:out value="${commentEach.employee.name}" /></li>
-                    <li><fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></li>
+                <ul class="comment_new_ul">
+                    <li>名前：<c:out value="${commentEach.employee.name}" /></li>
+                    <li>日付：<fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></li>
                     <li>
                         <c:if test="${sessionScope.login_employee.id == commentEach.employee.id}">
                             <a href="<c:url value='?action=${actCmt}&command=${commEdt}&id=${commentEach.id}' />">編集する</a>
                         </c:if>
                     </li>
                     <li>
-                        <c:if test="${commentEach.createdAt} != ${commentEach.updatedAt}">
-                           <span>編集済み</span>
+                        <c:if test="${commentEach.createdAt != commentEach.updatedAt}">
+                           <span>(編集済み)</span>
                         </c:if>
                     </li>
-                    <li><c:out value="${commentEach.content}" /></li>
+                    <li><br /><span class="fas fa-comment-dots">&nbsp;<c:out value="${commentEach.content}" /></span></li>
                 </ul>
             </div>
         </c:forEach>
@@ -50,8 +50,11 @@
                </div>
             </c:if>
 
-            <label for="${AttributeConst.CMT_CONTENT.getValue()}">コメント：</label>
-            <textarea name="${AttributeConst.CMT_CONTENT.getValue()}" rows="10" cols="50" autofocus>${comment.content}</textarea>
+            <br />
+            <h3>
+                <label for="${AttributeConst.CMT_CONTENT.getValue()}">コメント：</label><br />
+            </h3>
+            <textarea name="${AttributeConst.CMT_CONTENT.getValue()}" rows="10" cols="50" placeholder="読んだ日報にコメントしよう！" autofocus>${comment.content}</textarea>
             <br /><br />
             <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
             <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
