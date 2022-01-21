@@ -46,11 +46,11 @@ public class CommentAction extends ActionBase {
         putRequestScope(AttributeConst.PAGE, page);
         putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);
 
-//        String flush = getSessionScope(AttributeConst.FLUSH);
-//        if (flush != null) {
-//            putRequestScope(AttributeConst.FLUSH, flush);
-//            removeSessionScope(AttributeConst.FLUSH);
-//        }
+        String flush = getSessionScope(AttributeConst.FLUSH);
+        if (flush != null) {
+            putRequestScope(AttributeConst.FLUSH, flush);
+            removeSessionScope(AttributeConst.FLUSH);
+        }
 
         forward(ForwardConst.FW_CMT_INDEX);
     }
@@ -149,7 +149,10 @@ public class CommentAction extends ActionBase {
 
             service.destory(toNumber(getRequestParam(AttributeConst.CMT_ID)));
 
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
             redirect(ForwardConst.ACT_CMT, ForwardConst.CMD_INDEX);
+
 
     }
 }
